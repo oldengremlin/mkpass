@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+
+    echo mkpass username
+    exit
+
+fi
+
+echo "$1" | md5sum -b | sha512sum -b | uuencode -m - | tail -n+3 | head -1 | sed "s/^\(................................\).*/\1/"
+
